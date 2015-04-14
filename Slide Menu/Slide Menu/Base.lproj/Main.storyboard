@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Da5-IY-CHf">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -7,7 +7,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="Co8-Ld-vkh">
             <objects>
-                <viewController id="Da5-IY-CHf" customClass="RevealViewController" sceneMemberID="viewController">
+                <viewController id="Da5-IY-CHf" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uln-O0-elP"/>
                         <viewControllerLayoutGuide type="bottom" id="3Df-tB-LFb"/>
@@ -18,12 +18,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="FBA-zN-aWA" kind="custom" customClass="SWRevealViewControllerSegueSetController" id="6jH-kJ-vww"/>
+                        <segue destination="FBA-zN-aWA" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="yW6-rj-tWc"/>
+                        <segue destination="1Dm-rf-foJ" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="z2P-ui-irv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ak-IH-ye3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="374" y="398"/>
+            <point key="canvasLocation" x="546" y="386"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="akq-mu-ppH">
@@ -34,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rax-PM-6Pe">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="rax-PM-6Pe">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rax-PM-6Pe" id="3hq-jT-uWG">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -46,10 +47,13 @@
                             <outlet property="delegate" destination="FBA-zN-aWA" id="xZz-Er-LP7"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="6XZ-ZW-awX" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="gWR-Yk-UZX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pa9-C0-zBj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1031" y="398"/>
+            <point key="canvasLocation" x="1278" y="162"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y3P-9c-nLU">
@@ -60,7 +64,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="6XZ-ZW-awX" kind="relationship" relationship="rootViewController" id="7e8-U2-mpt"/>
+                        <segue destination="6XZ-ZW-awX" kind="relationship" relationship="rootViewController" id="Bch-z8-A0a"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zWw-tJ-GYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -70,7 +74,7 @@
         <!--View Controller-->
         <scene sceneID="sBj-yB-Qod">
             <objects>
-                <viewController id="6XZ-ZW-awX" sceneMemberID="viewController">
+                <viewController id="6XZ-ZW-awX" customClass="ViewController" customModule="Slide_Menu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v1u-lV-bKC"/>
                         <viewControllerLayoutGuide type="bottom" id="7aT-yx-hPq"/>
@@ -80,11 +84,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="HIN-JA-Ahj"/>
+                    <navigationItem key="navigationItem" id="HIN-JA-Ahj">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="nld-RH-fjG"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="Open" destination="nld-RH-fjG" id="hmp-e2-F86"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9I7-0t-GJA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1031" y="1148"/>
+            <point key="canvasLocation" x="1194" y="1055"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="gWR-Yk-UZX"/>
+    </inferredMetricsTieBreakers>
 </document>
